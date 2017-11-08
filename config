@@ -43,10 +43,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -156,22 +156,30 @@ bar {
 	tray_output primary
 	position top
 }
-
+exec --no-startup-id blueman-applet
 exec feh --bg-fill Pictures/wall.jpg
-exec srandrd ~/.config/i3/display-handler.sh
 exec --no-startup-id /usr/bin/nm-applet
 exec /usr/bin/clipit
-exec xautolock -time 5 -locker "i3lock -c 000000"
-bindsym Ctrl+Mod1+l exec i3lock -c 000000
+exec xrdb -merge ~/.Xdefaults
 
+exec xautolock -time 5 -locker "i3lock -c 000000"
+bindsym $mod+l exec i3lock -c 000000
+
+focus_on_window_activation focus
 
 workspace 1 output eDP1
-workspace 2 output DP1-1
-workspace 3 output DP1-2
+workspace 2 output eDP1
+workspace 3 output eDP1
+workspace 4 output DP1-1
+workspace 5 output DP1-1
+workspace 6 output DP1-1
+workspace 7 output DP1-2
+workspace 8 output DP1-2
+workspace 9 output DP1-2
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master "5%+" #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master "5%-" #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
